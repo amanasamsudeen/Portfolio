@@ -1346,20 +1346,92 @@ ul {
 }
 
 /* ===== FREELANCE ===== */
-.freelance-card {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-lg);
+.freelance-hero {
+  position: relative;
   margin-top: var(--space-md);
-  padding: var(--space-lg);
+  padding: var(--space-xl);
   border-radius: var(--radius-2xl);
   border: 1px solid var(--outline-variant);
-  background: color-mix(in srgb, var(--primary) 5%, var(--surface));
+  background: color-mix(in srgb, var(--primary) 6%, var(--surface));
+  overflow: hidden;
 }
-.freelance-card p {
-  max-width: 560px;
+
+.freelance-hero-glow {
+  position: absolute;
+  top: -30%;
+  right: -12%;
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+  background: linear-gradient(155deg, var(--primary), #7c5cff 55%, #ff5c8a);
+  opacity: 0.16;
+  filter: blur(10px);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.freelance-hero-content {
+  position: relative;
+  z-index: 1;
+}
+
+.freelance-pitch {
+  max-width: 640px;
+}
+
+.freelance-services {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-md);
+  margin-top: var(--space-xl);
+}
+
+.freelance-service-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  padding: var(--space-lg);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--outline-variant);
+  background: var(--surface);
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+.freelance-service-card:hover {
+  transform: translateY(-4px);
+  border-color: color-mix(in srgb, var(--primary) 40%, var(--outline-variant));
+}
+
+.freelance-trust-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xl);
+  margin-top: var(--space-xl);
+  padding-top: var(--space-lg);
+  border-top: 1px solid var(--outline-variant);
+}
+
+.freelance-trust-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.freelance-trust-value {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 2rem;
+  line-height: 1;
+  color: var(--primary);
+}
+
+.freelance-cta {
+  margin-top: var(--space-xl);
+}
+
+@media (max-width: 640px) {
+  .freelance-hero {
+    padding: var(--space-lg);
+  }
 }
 
 /* ===== CONTACT ===== */

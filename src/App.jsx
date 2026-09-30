@@ -882,7 +882,7 @@ function FreelanceSection() {
       <div className="freelance-hero reveal-item">
         <div className="freelance-hero-glow" />
         <div className="freelance-hero-content">
-          <p className="freelance-pitch">
+          <p className="freelance-pitch text-body-lg" style={{ color: 'var(--on-surface-variant)' }}>
             Have a project in mind? I partner with founders and teams to turn product ideas into deployed, production-ready software — end to end, from API design to the interface your users see.
           </p>
 
