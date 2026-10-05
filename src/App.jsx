@@ -28,6 +28,7 @@ const TECH_ICONS = {
   'Node.js': 'nodejs-plain',
   'Express.js': 'express-original',
   'PostgreSQL': 'postgresql-plain',
+  'Gemini API': 'gemini',
   'MongoDB': 'mongodb-plain',
   'Firebase': 'firebase-plain',
   'SQL Server': 'microsoftsqlserver-plain',
@@ -56,6 +57,21 @@ function techInitials(name) {
 
 function TechIcon({ name }) {
   const slug = TECH_ICONS[name]
+  if (slug === 'gemini') {
+    return (
+      <svg className="tech-icon-glyph" viewBox="0 0 24 24" role="img" aria-label={name}>
+        <title>{name}</title>
+        <defs>
+          <linearGradient id="gemini-grad" x1="2" y1="22" x2="22" y2="2" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stopColor="#4285f4" />
+            <stop offset="0.55" stopColor="#9b72cb" />
+            <stop offset="1" stopColor="#d96570" />
+          </linearGradient>
+        </defs>
+        <path fill="url(#gemini-grad)" d="M12 2C12.6 7.5 16.5 11.4 22 12C16.5 12.6 12.6 16.5 12 22C11.4 16.5 7.5 12.6 2 12C7.5 11.4 11.4 7.5 12 2Z" />
+      </svg>
+    )
+  }
   if (slug) {
     return <i className={`devicon-${slug} colored tech-icon-glyph`} title={name} aria-hidden="true" />
   }
@@ -74,7 +90,7 @@ function TechChip({ name }) {
 function TechRow({ items }) {
   return (
     <div className="tech-row">
-      {items.map((t) => (
+      {items.filter((t) => TECH_ICONS[t]).map((t) => (
         <span key={t} className="tech-row-icon">
           <TechIcon name={t} />
         </span>
@@ -191,6 +207,7 @@ export default function App() {
         <FreelanceSection />
         <CertificationsSection />
         <AchievementsSection />
+        <OpenSourceSection />
         <PublicationsSection />
         <VolunteeringSection />
         <ContactSection />
@@ -639,6 +656,35 @@ function ProjectsSection() {
         </div>
       </div>
 
+      {/* Eclader AI Project Card */}
+      <div className="project-showcase reveal-item">
+        <div className="project-meta-row">
+          <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
+            <span className="showcase-badge">Full-Stack Project</span>
+          </div>
+          <div className="text-label-mono" style={{ color: 'var(--on-surface-variant)' }}>github.com/amanasamsudeen/Eclader-AI</div>
+        </div>
+
+        <div>
+          <h3 className="text-headline-lg" style={{ color: 'var(--on-surface)' }}>Eclader AI</h3>
+          <p className="text-body-md" style={{ color: 'var(--primary)', fontWeight: 600, paddingTop: 4 }}>Circular E-Waste Management Platform</p>
+          <p className="text-body-lg" style={{ color: 'var(--on-surface-variant)', paddingTop: 8 }}>
+            A circular e-waste management platform built with React, Tailwind CSS, FastAPI and PostgreSQL, with Gemini API integration — focused on managing electronic waste in a circular, sustainable way.
+          </p>
+        </div>
+
+        <TechRow items={['React.js', 'Tailwind CSS', 'FastAPI', 'PostgreSQL', 'Gemini API']} />
+
+        <div className="project-actions">
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--space-sm)' }}>
+            <a href="https://github.com/amanasamsudeen/Eclader-AI" target="_blank" rel="noopener" className="btn-primary-sm">
+              <span className="material-symbols-outlined" style={{ fontSize: 16 }}>code</span>
+              <span>View on GitHub</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
       {/* Other Projects — filterable grid */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-md)', paddingTop: 'var(--space-lg)' }}>
         <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: 'var(--space-sm)' }}>
@@ -772,11 +818,59 @@ function AchievementsSection() {
   )
 }
 
+// ===== OPEN SOURCE — GSSoC 2026 =====
+function OpenSourceSection() {
+  const badges = [
+    { src: '/opensource/gssoc-contributor.png', role: 'Contributor' },
+    { src: '/opensource/gssoc-ambassador.png', role: 'Ambassador' },
+    { src: '/opensource/gssoc-rising-star.webp', role: 'Rising Star' },
+    { src: '/opensource/gssoc-early-bird.png', role: 'Early Bird' },
+  ]
+
+  return (
+    <section id="open-source" className="section-container section-divider" data-section="open-source">
+      <SectionHeader num="09" tag="Open Source" title="Open Source — GSSoC 2026" subtitle="Selected for GirlScript Summer of Code 2026 as an open source contributor and ambassador." />
+
+      <div className="oss-panel reveal-item">
+        <div className="oss-intro">
+          <div className="oss-roles">
+            <span className="period-pill">Open Source Contributor</span>
+            <span className="period-pill">Ambassador</span>
+            <span className="period-pill">2026</span>
+          </div>
+          <p className="text-body-lg" style={{ color: 'var(--on-surface-variant)' }}>
+            Selected and participated in GirlScript Summer of Code 2026 (GSSoC'26), a program by GirlScript Foundation, as an open source contributor and ambassador. It was a great experience contributing to open source projects and being part of the community.
+          </p>
+          <div className="oss-actions">
+            <a href="/opensource/gssoc-2026-certificate.pdf" target="_blank" rel="noopener" className="cred-view-btn">
+              <span className="material-symbols-outlined" style={{ fontSize: 16 }}>description</span>
+              <span>View Certificate</span>
+            </a>
+            <a href="https://gssoc.girlscript.org/" target="_blank" rel="noopener" className="cred-view-btn">
+              <span className="material-symbols-outlined" style={{ fontSize: 16 }}>open_in_new</span>
+              <span>GSSoC Website</span>
+            </a>
+          </div>
+        </div>
+
+        <div className="oss-badges">
+          {badges.map((b) => (
+            <figure key={b.role} className="oss-badge">
+              <img src={b.src} alt={`GSSoC 2026 ${b.role} badge`} loading="lazy" />
+              <figcaption className="text-label-mono">{b.role}</figcaption>
+            </figure>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
 // ===== PUBLICATIONS =====
 function PublicationsSection() {
   return (
     <section id="publications" className="section-container section-divider" data-section="publications">
-      <SectionHeader num="09" tag="Publications" title="Peer-Reviewed Publication" subtitle="Published research in an academic book chapter." />
+      <SectionHeader num="10" tag="Publications" title="Peer-Reviewed Publication" subtitle="Published research in an academic book chapter." />
 
       <a
         href="https://www.taylorfrancis.com/chapters/edit/10.1201/9781003534679-16/waste-awareness-disposal-behaviors-path-toward-sustainable-management-study-among-undergraduate-students-university-colombo-srilanka-amana-aadhib-prashanthi-shriyani-boopathikumar"
@@ -835,7 +929,7 @@ function VolunteeringSection() {
 
   return (
     <section id="volunteering" className="section-container section-divider" data-section="volunteering">
-      <SectionHeader num="10" tag="Volunteering" title="Volunteering Services" subtitle="Pro bono technical work for mission-driven organizations." />
+      <SectionHeader num="11" tag="Volunteering" title="Volunteering Services" subtitle="Pro bono technical work for mission-driven organizations." />
 
       <div className="volunteer-grid">
         {roles.map((v) => (
@@ -964,7 +1058,7 @@ function ContactSection() {
 
   return (
     <section id="contact" className="section-container section-divider" data-section="contact" style={{ paddingBottom: 'var(--margin-lg)' }}>
-      <SectionHeader num="11" tag="Contact" title="Let's Build Something Meaningful" subtitle="Whether you have an ambitious AI feature to architect, a complex full-stack codebase needing leadership, or an open engineering role — my inbox is open." />
+      <SectionHeader num="12" tag="Contact" title="Let's Build Something Meaningful" subtitle="Whether you have an ambitious AI feature to architect, a complex full-stack codebase needing leadership, or an open engineering role — my inbox is open." />
 
       <div className="contact-grid" style={{ marginTop: 'var(--space-md)' }}>
         <div className="contact-form-wrapper">
@@ -1019,7 +1113,7 @@ function ContactSection() {
               { label: 'Medium', href: 'https://medium.com/@amanasamsudeen' },
             ].map((s) => (
               <a key={s.label} href={s.href} target="_blank" rel="noopener" className="social-link text-label-mono">
-                <SocialIcon label={s.label} size={15} />
+                <span className="social-link-icon"><SocialIcon label={s.label} size={15} /></span>
                 <span>{s.label}</span>
               </a>
             ))}
